@@ -16,8 +16,8 @@ export default defineConfig(({mode}) => {
           name: 'AgendaHub',
           short_name: 'AgendaHub',
           description: 'Gerenciamento de agenda, clientes e financeiro',
-          theme_color: '#8b5cf6',
-          background_color: '#ffffff',
+          theme_color: '#0f172a',
+          background_color: '#0f172a',
           display: 'standalone',
           icons: [
             {

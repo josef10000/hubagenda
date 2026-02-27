@@ -22,8 +22,8 @@ export const Login: React.FC = () => {
   return (
     <div className="min-h-screen relative flex flex-col justify-center items-center p-4 sm:p-8 overflow-hidden bg-slate-950">
       {/* Background Gradients */}
-      <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-primary/20 blur-[120px] pointer-events-none"></div>
-      <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-emerald-500/10 blur-[120px] pointer-events-none"></div>
+      <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-slate-500/10 blur-[120px] pointer-events-none"></div>
+      <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-slate-400/5 blur-[120px] pointer-events-none"></div>
       
       <div className="w-full max-w-md relative z-10">
         <div className="text-center mb-10 animate-in fade-in slide-in-from-bottom-4 duration-700">
