@@ -229,7 +229,7 @@ export const Modals: React.FC<ModalProps> = ({ isOpen, onClose, type, editId }) 
 
   return (
     <div className="fixed inset-0 z-[100] flex items-end sm:items-center justify-center bg-slate-900/60 backdrop-blur-sm p-0 sm:p-4 animate-in fade-in duration-200">
-      <div className="bg-white dark:bg-slate-900 w-full max-w-lg rounded-t-3xl sm:rounded-3xl shadow-2xl overflow-hidden animate-in slide-in-from-bottom-8 sm:slide-in-from-bottom-4 duration-300 max-h-[90vh] flex flex-col">
+      <div className="bg-white dark:bg-slate-800 w-full max-w-lg rounded-t-3xl sm:rounded-3xl shadow-2xl overflow-hidden animate-in slide-in-from-bottom-8 sm:slide-in-from-bottom-4 duration-300 max-h-[90vh] flex flex-col">
         <div className="flex justify-between items-center p-5 border-b border-slate-100 dark:border-slate-800">
           <h3 className="text-lg font-black tracking-tight">
             {type === 'appointment' ? (editId ? 'Editar Agendamento' : 'Novo Agendamento') : ''}
@@ -247,7 +247,7 @@ export const Modals: React.FC<ModalProps> = ({ isOpen, onClose, type, editId }) 
             <form onSubmit={submitAppt} className="space-y-4">
               <div>
                 <label className="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1.5">Cliente</label>
-                <select value={aClientId} onChange={e => handleClientSelect(e.target.value)} className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-primary/50 outline-none transition-all mb-2 appearance-none">
+                <select value={aClientId} onChange={e => handleClientSelect(e.target.value)} className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-primary/50 outline-none transition-all mb-2 appearance-none">
                   <option value="">-- Selecione um Cliente --</option>
                   <option value="new">+ Novo Cliente</option>
                   {clients.map(c => (
@@ -256,8 +256,8 @@ export const Modals: React.FC<ModalProps> = ({ isOpen, onClose, type, editId }) 
                 </select>
                 {(aClientId === 'new' || !aClientId) && (
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <input required type="text" placeholder="Nome do Cliente" value={aName} onChange={e => setAName(e.target.value)} className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-primary/50 outline-none transition-all" />
-                    <input type="tel" value={aPhone} onChange={e => setAPhone(e.target.value)} placeholder="WhatsApp (Opcional)" className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-primary/50 outline-none transition-all" />
+                    <input required type="text" placeholder="Nome do Cliente" value={aName} onChange={e => setAName(e.target.value)} className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-primary/50 outline-none transition-all" />
+                    <input type="tel" value={aPhone} onChange={e => setAPhone(e.target.value)} placeholder="WhatsApp (Opcional)" className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-primary/50 outline-none transition-all" />
                   </div>
                 )}
               </div>
@@ -268,7 +268,7 @@ export const Modals: React.FC<ModalProps> = ({ isOpen, onClose, type, editId }) 
                 <button 
                   type="button" 
                   onClick={() => setShowServicesList(!showServicesList)}
-                  className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-primary/50 outline-none transition-all text-left flex justify-between items-center mb-3"
+                  className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-primary/50 outline-none transition-all text-left flex justify-between items-center mb-3"
                 >
                   <span className="truncate font-medium text-slate-700 dark:text-slate-300">
                     {aServices.length > 0 ? aServices.join(', ') : 'Selecione os serviços...'}
@@ -277,7 +277,7 @@ export const Modals: React.FC<ModalProps> = ({ isOpen, onClose, type, editId }) 
                 </button>
 
                 {showServicesList && (
-                  <div className="mb-3 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl p-2 flex flex-col gap-2">
+                  <div className="mb-3 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl p-2 flex flex-col gap-2">
                     <div className="max-h-48 overflow-y-auto space-y-1 no-scrollbar">
                       {settings.services.length > 0 ? settings.services.map((s, i) => {
                         const isSelected = aServices.includes(s.name);
@@ -311,11 +311,11 @@ export const Modals: React.FC<ModalProps> = ({ isOpen, onClose, type, editId }) 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1.5">Data</label>
-                  <input required type="date" value={aDate} onChange={e => setADate(e.target.value)} className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-primary/50 outline-none transition-all" />
+                  <input required type="date" value={aDate} onChange={e => setADate(e.target.value)} className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-primary/50 outline-none transition-all" />
                 </div>
                 <div>
                   <label className="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1.5">Hora</label>
-                  <input type="time" value={aTime} onChange={e => setATime(e.target.value)} className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-primary/50 outline-none transition-all" />
+                  <input type="time" value={aTime} onChange={e => setATime(e.target.value)} className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-primary/50 outline-none transition-all" />
                 </div>
               </div>
 
@@ -323,8 +323,8 @@ export const Modals: React.FC<ModalProps> = ({ isOpen, onClose, type, editId }) 
                 <div>
                   <label className="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1.5">Duração (Opcional)</label>
                   <div className="flex gap-2">
-                    <input type="number" value={aDur} onChange={e => setADur(e.target.value)} className="w-1/2 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-primary/50 outline-none transition-all" placeholder="Ex: 2" />
-                    <select value={aDurUnit} onChange={e => setADurUnit(e.target.value as DurationUnit)} className="w-1/2 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl px-2 py-3 text-sm focus:ring-2 focus:ring-primary/50 outline-none transition-all appearance-none">
+                    <input type="number" value={aDur} onChange={e => setADur(e.target.value)} className="w-1/2 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-primary/50 outline-none transition-all" placeholder="Ex: 2" />
+                    <select value={aDurUnit} onChange={e => setADurUnit(e.target.value as DurationUnit)} className="w-1/2 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl px-2 py-3 text-sm focus:ring-2 focus:ring-primary/50 outline-none transition-all appearance-none">
                       <option value="minutes">Min</option>
                       <option value="hours">Horas</option>
                       <option value="days">Dias</option>
@@ -333,7 +333,7 @@ export const Modals: React.FC<ModalProps> = ({ isOpen, onClose, type, editId }) 
                 </div>
                 <div>
                   <label className="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1.5">Valor (R$)</label>
-                  <input required type="number" step="1" value={aPrice} onChange={e => setAPrice(e.target.value)} className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-primary/50 outline-none transition-all" />
+                  <input required type="number" step="1" value={aPrice} onChange={e => setAPrice(e.target.value)} className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-primary/50 outline-none transition-all" />
                 </div>
               </div>
 
@@ -347,12 +347,12 @@ export const Modals: React.FC<ModalProps> = ({ isOpen, onClose, type, editId }) 
             <form onSubmit={submitTrans} className="space-y-4">
               <div>
                 <label className="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1.5">Descrição</label>
-                <input required type="text" value={tDesc} onChange={e => setTDesc(e.target.value)} className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-primary/50 outline-none transition-all" />
+                <input required type="text" value={tDesc} onChange={e => setTDesc(e.target.value)} className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-primary/50 outline-none transition-all" />
               </div>
               
               <div>
                 <label className="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1.5">Categoria</label>
-                <select required value={tCat} onChange={e => setTCat(e.target.value)} className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-primary/50 outline-none transition-all appearance-none">
+                <select required value={tCat} onChange={e => setTCat(e.target.value)} className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-primary/50 outline-none transition-all appearance-none">
                   <option value="Materiais">Materiais</option>
                   <option value="Conta Recorrente">Conta Recorrente</option>
                   <option value="Outros">Outros</option>
@@ -361,7 +361,7 @@ export const Modals: React.FC<ModalProps> = ({ isOpen, onClose, type, editId }) 
 
               <div>
                 <label className="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1.5">Valor (R$)</label>
-                <input required type="number" step="1" value={tVal} onChange={e => setTVal(e.target.value)} className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-primary/50 outline-none transition-all" />
+                <input required type="number" step="1" value={tVal} onChange={e => setTVal(e.target.value)} className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-primary/50 outline-none transition-all" />
               </div>
 
               <button type="submit" className="w-full bg-red-500 hover:bg-red-600 text-white font-bold py-4 rounded-xl mt-4 transition-colors">
@@ -374,19 +374,19 @@ export const Modals: React.FC<ModalProps> = ({ isOpen, onClose, type, editId }) 
             <form onSubmit={submitService} className="space-y-4">
               <div>
                 <label className="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1.5">Nome do Serviço</label>
-                <input required type="text" value={sName} onChange={e => setSName(e.target.value)} className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-primary/50 outline-none transition-all" />
+                <input required type="text" value={sName} onChange={e => setSName(e.target.value)} className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-primary/50 outline-none transition-all" />
               </div>
               
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1.5">Preço (R$)</label>
-                  <input required type="number" step="1" value={sPrice} onChange={e => setSPrice(e.target.value)} className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-primary/50 outline-none transition-all" />
+                  <input required type="number" step="1" value={sPrice} onChange={e => setSPrice(e.target.value)} className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-primary/50 outline-none transition-all" />
                 </div>
                 <div>
                   <label className="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1.5">Duração (Opcional)</label>
                   <div className="flex gap-2">
-                    <input type="number" value={sDur} onChange={e => setSDur(e.target.value)} className="w-1/2 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-primary/50 outline-none transition-all" placeholder="Ex: 1" />
-                    <select value={sDurUnit} onChange={e => setSDurUnit(e.target.value as DurationUnit)} className="w-1/2 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl px-2 py-3 text-sm focus:ring-2 focus:ring-primary/50 outline-none transition-all appearance-none">
+                    <input type="number" value={sDur} onChange={e => setSDur(e.target.value)} className="w-1/2 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-primary/50 outline-none transition-all" placeholder="Ex: 1" />
+                    <select value={sDurUnit} onChange={e => setSDurUnit(e.target.value as DurationUnit)} className="w-1/2 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl px-2 py-3 text-sm focus:ring-2 focus:ring-primary/50 outline-none transition-all appearance-none">
                       <option value="minutes">Min</option>
                       <option value="hours">Horas</option>
                       <option value="days">Dias</option>
@@ -405,23 +405,23 @@ export const Modals: React.FC<ModalProps> = ({ isOpen, onClose, type, editId }) 
             <form onSubmit={submitClient} className="space-y-4">
               <div>
                 <label className="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1.5">Nome do Cliente</label>
-                <input required type="text" value={cName} onChange={e => setCName(e.target.value)} className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-primary/50 outline-none transition-all" />
+                <input required type="text" value={cName} onChange={e => setCName(e.target.value)} className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-primary/50 outline-none transition-all" />
               </div>
               
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1.5">WhatsApp</label>
-                  <input type="tel" value={cPhone} onChange={e => setCPhone(e.target.value)} placeholder="(11) 99999-9999" className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-primary/50 outline-none transition-all" />
+                  <input type="tel" value={cPhone} onChange={e => setCPhone(e.target.value)} placeholder="(11) 99999-9999" className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-primary/50 outline-none transition-all" />
                 </div>
                 <div>
                   <label className="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1.5">Aniversário</label>
-                  <input type="date" value={cBirthday} onChange={e => setCBirthday(e.target.value)} className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-primary/50 outline-none transition-all" />
+                  <input type="date" value={cBirthday} onChange={e => setCBirthday(e.target.value)} className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-primary/50 outline-none transition-all" />
                 </div>
               </div>
 
               <div>
                 <label className="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1.5">Anotações / Ficha</label>
-                <textarea value={cNotes} onChange={e => setCNotes(e.target.value)} rows={3} placeholder="Alergias, preferências, fórmulas..." className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-primary/50 outline-none transition-all resize-none"></textarea>
+                <textarea value={cNotes} onChange={e => setCNotes(e.target.value)} rows={3} placeholder="Alergias, preferências, fórmulas..." className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-primary/50 outline-none transition-all resize-none"></textarea>
               </div>
 
               <button type="submit" className="w-full bg-primary hover:bg-primary-hover text-white font-bold py-4 rounded-xl mt-4 transition-colors">

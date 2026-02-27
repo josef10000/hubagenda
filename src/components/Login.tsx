@@ -20,15 +20,15 @@ export const Login: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen relative flex flex-col justify-center items-center p-4 sm:p-8 overflow-hidden bg-slate-950">
+    <div className="min-h-screen relative flex flex-col justify-center items-center p-4 sm:p-8 overflow-hidden bg-slate-900">
       {/* Background Gradients */}
-      <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-slate-500/10 blur-[120px] pointer-events-none"></div>
-      <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-slate-400/5 blur-[120px] pointer-events-none"></div>
+      <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-blue-500/10 blur-[120px] pointer-events-none"></div>
+      <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-indigo-400/5 blur-[120px] pointer-events-none"></div>
       
       <div className="w-full max-w-md relative z-10">
         <div className="text-center mb-10 animate-in fade-in slide-in-from-bottom-4 duration-700">
-          <div className="inline-flex items-center justify-center w-20 h-20 rounded-3xl bg-white/5 backdrop-blur-xl border border-white/10 mb-6 shadow-2xl">
-            <span className="text-4xl font-black text-white">H</span>
+          <div className="inline-flex items-center justify-center w-20 h-20 rounded-3xl bg-blue-600/20 backdrop-blur-xl border border-blue-500/30 mb-6 shadow-2xl shadow-blue-500/20">
+            <span className="text-4xl font-black text-blue-400">H</span>
           </div>
           <h1 className="text-4xl sm:text-5xl font-black tracking-tight text-white mb-4">AgendaHub</h1>
           <p className="text-slate-400 text-lg font-medium px-4">

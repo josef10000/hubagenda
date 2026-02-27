@@ -31,7 +31,7 @@ export const BottomNav: React.FC<BottomNavProps> = ({ currentView, setView, onAd
                 onClick={onAddClick}
                 className="flex flex-col items-center justify-center -mt-6"
               >
-                <div className="bg-primary text-white p-3 rounded-full shadow-lg shadow-primary/30 border-4 border-slate-50 dark:border-slate-950">
+                <div className="bg-primary text-white p-3 rounded-full shadow-lg shadow-primary/30 border-4 border-slate-50 dark:border-slate-900">
                   <Icon size={24} strokeWidth={2.5} />
                 </div>
                 <span className="text-[10px] font-semibold mt-1 text-slate-500 dark:text-slate-400">
