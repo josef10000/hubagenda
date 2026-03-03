@@ -97,12 +97,15 @@ export const AppProvider: React.FC<{children: React.ReactNode}> = ({ children })
     if (user && dataLoaded) {
       const syncData = async () => {
         try {
-          await setDoc(doc(db, 'users', user.uid), {
+          // Strip undefined values to prevent Firestore errors
+          const cleanData = JSON.parse(JSON.stringify({
             appointments,
             transactions,
             settings,
             clients
-          }, { merge: true });
+          }));
+          
+          await setDoc(doc(db, 'users', user.uid), cleanData, { merge: true });
         } catch (error) {
           console.error("Error syncing data to Firestore:", error);
         }
