@@ -147,7 +147,7 @@ export const AppProvider: React.FC<{children: React.ReactNode}> = ({ children })
           const newClient: Client = {
             id: crypto.randomUUID(),
             name: appt.name,
-            phone: appt.phone,
+            phone: appt.phone || "",
             createdAt: new Date().toISOString()
           };
           updatedClients.push(newClient);
@@ -157,7 +157,7 @@ export const AppProvider: React.FC<{children: React.ReactNode}> = ({ children })
         }
       }
 
-      const serviceName = appt.services ? appt.services.map(s => s.name).join(', ') : appt.service;
+      const serviceName = appt.services && appt.services.length > 0 ? appt.services.map(s => s.name).join(', ') : (appt.service || "");
 
       if (appt.status === 'pending' && appt.date < today) {
         hasChanges = true;
@@ -202,7 +202,7 @@ export const AppProvider: React.FC<{children: React.ReactNode}> = ({ children })
     const appt = appointments.find(a => a.id === id);
     if (appt) {
       updateAppointment(id, { status: 'done' });
-      const serviceName = appt.services ? appt.services.map(s => s.name).join(', ') : appt.service;
+      const serviceName = appt.services && appt.services.length > 0 ? appt.services.map(s => s.name).join(', ') : (appt.service || "");
       addTransaction({
         desc: `Serviço: ${appt.name} (${serviceName})`,
         val: appt.price,
