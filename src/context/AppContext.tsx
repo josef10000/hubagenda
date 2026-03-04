@@ -25,6 +25,13 @@ interface AppState {
   deleteClient: (id: string) => void;
 }
 
+const generateId = () => {
+  if (typeof crypto !== 'undefined' && crypto.randomUUID) {
+    return crypto.randomUUID();
+  }
+  return Date.now().toString(36) + Math.random().toString(36).substring(2);
+};
+
 const defaultBusinessHours = {
   0: { isOpen: false, start: '09:00', end: '18:00' },
   1: { isOpen: true, start: '09:00', end: '18:00' },
@@ -158,7 +165,8 @@ export const AppProvider: React.FC<{children: React.ReactNode}> = ({ children })
     const updatedAppointments = appointments.map(appt => {
       // Auto-migrate clients from old appointments
       if (!appt.clientId) {
-        const existingClient = updatedClients.find(c => c.name.toLowerCase() === appt.name.toLowerCase());
+        const apptName = appt.name || "Sem Nome";
+        const existingClient = updatedClients.find(c => c.name.toLowerCase() === apptName.toLowerCase());
         if (existingClient) {
           appt.clientId = existingClient.id;
           if (appt.phone && !existingClient.phone) {
@@ -168,8 +176,8 @@ export const AppProvider: React.FC<{children: React.ReactNode}> = ({ children })
           hasChanges = true;
         } else {
           const newClient: Client = {
-            id: crypto.randomUUID(),
-            name: appt.name,
+            id: generateId(),
+            name: apptName,
             phone: appt.phone || "",
             createdAt: new Date().toISOString()
           };
@@ -185,7 +193,7 @@ export const AppProvider: React.FC<{children: React.ReactNode}> = ({ children })
       if (appt.status === 'pending' && appt.date < today) {
         hasChanges = true;
         newTransactions.push({
-          id: crypto.randomUUID(),
+          id: generateId(),
           desc: `Serviço: ${appt.name} (${serviceName})`,
           val: appt.price,
           type: 'in',
@@ -209,7 +217,7 @@ export const AppProvider: React.FC<{children: React.ReactNode}> = ({ children })
   }, [appointments, clients, dataLoaded]);
 
   const addAppointment = (appt: Omit<Appointment, 'id'>) => {
-    const newAppt = { ...appt, id: crypto.randomUUID() };
+    const newAppt = { ...appt, id: generateId() };
     setAppointments(prev => [...prev, newAppt]);
   };
 
@@ -237,7 +245,7 @@ export const AppProvider: React.FC<{children: React.ReactNode}> = ({ children })
   };
 
   const addTransaction = (trans: Omit<Transaction, 'id'>) => {
-    const newTrans = { ...trans, id: crypto.randomUUID() };
+    const newTrans = { ...trans, id: generateId() };
     setTransactions(prev => [...prev, newTrans]);
   };
 
@@ -261,7 +269,7 @@ export const AppProvider: React.FC<{children: React.ReactNode}> = ({ children })
   };
 
   const addClient = (client: Omit<Client, 'id' | 'createdAt'>) => {
-    const id = crypto.randomUUID();
+    const id = generateId();
     const newClient: Client = { ...client, id, createdAt: new Date().toISOString() };
     setClients(prev => [...prev, newClient]);
     return id;

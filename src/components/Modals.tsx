@@ -147,12 +147,13 @@ export const Modals: React.FC<ModalProps> = ({ isOpen, onClose, type, editId }) 
     let finalClientId = aClientId;
     if (aClientId === 'new' || !aClientId) {
       // Create new client if it doesn't exist
-      const existing = clients.find(c => c.name.toLowerCase() === aName.toLowerCase());
+      const safeName = aName || "Sem Nome";
+      const existing = clients.find(c => c.name.toLowerCase() === safeName.toLowerCase());
       if (existing) {
         finalClientId = existing.id;
         if (aPhone && !existing.phone) updateClient(existing.id, { phone: aPhone });
       } else {
-        finalClientId = addClient({ name: aName, phone: aPhone });
+        finalClientId = addClient({ name: safeName, phone: aPhone });
       }
     } else {
       // Update existing client phone if changed
