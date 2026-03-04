@@ -13,7 +13,8 @@ export const Login: React.FC = () => {
       await signInWithPopup(auth, googleProvider);
     } catch (err: any) {
       console.error(err);
-      setError('Erro ao fazer login com o Google. Tente novamente.');
+      // Display the actual error message to help debugging
+      setError(`Erro ao fazer login: ${err.message || 'Tente novamente.'}`);
     } finally {
       setLoading(false);
     }

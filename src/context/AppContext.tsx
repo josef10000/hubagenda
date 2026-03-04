@@ -59,25 +59,42 @@ export const AppProvider: React.FC<{children: React.ReactNode}> = ({ children })
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       setUser(currentUser);
       if (currentUser) {
-        // Fetch data from Firestore
-        const docRef = doc(db, 'users', currentUser.uid);
-        const docSnap = await getDoc(docRef);
-        if (docSnap.exists()) {
-          const data = docSnap.data();
-          setAppointments(data.appointments || []);
-          setTransactions(data.transactions || []);
-          setSettings(data.settings || defaultSettings);
-          setClients(data.clients || []);
-        } else {
-          // Initialize new user document
-          await setDoc(docRef, {
-            appointments: [],
-            transactions: [],
-            settings: defaultSettings,
-            clients: []
-          });
+        try {
+          // Fetch data from Firestore
+          const docRef = doc(db, 'users', currentUser.uid);
+          const docSnap = await getDoc(docRef);
+          
+          if (docSnap.exists()) {
+            const data = docSnap.data();
+            setAppointments(data.appointments || []);
+            setTransactions(data.transactions || []);
+            setSettings(data.settings || defaultSettings);
+            setClients(data.clients || []);
+          } else {
+            // Initialize new user document if it doesn't exist
+            const initialData = {
+              appointments: [],
+              transactions: [],
+              settings: defaultSettings,
+              clients: []
+            };
+            await setDoc(docRef, initialData);
+            setAppointments([]);
+            setTransactions([]);
+            setSettings(defaultSettings);
+            setClients([]);
+          }
+          setDataLoaded(true);
+        } catch (error: any) {
+          console.error("FIREBASE READ ERROR:", error);
+          alert(`Erro ao ler dados do Firestore: ${error.message}\n\nVerifique as regras de segurança no console do Firebase.`);
+          
+          setAppointments([]);
+          setTransactions([]);
+          setSettings(defaultSettings);
+          setClients([]);
+          setDataLoaded(true);
         }
-        setDataLoaded(true);
       } else {
         // Clear data on logout
         setAppointments([]);
@@ -105,9 +122,12 @@ export const AppProvider: React.FC<{children: React.ReactNode}> = ({ children })
             clients
           }));
           
+          // Try to save to Firestore
           await setDoc(doc(db, 'users', user.uid), cleanData, { merge: true });
-        } catch (error) {
-          console.error("Error syncing data to Firestore:", error);
+          console.log("Data successfully saved to Firestore!");
+        } catch (error: any) {
+          console.error("FIREBASE WRITE ERROR:", error);
+          alert(`Erro ao salvar no Firestore: ${error.message}\n\nVerifique as regras de segurança no console do Firebase.`);
         }
       };
       
