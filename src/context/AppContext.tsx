@@ -94,7 +94,8 @@ export const AppProvider: React.FC<{children: React.ReactNode}> = ({ children })
           setDataLoaded(true);
         } catch (error: any) {
           console.error("FIREBASE READ ERROR:", error);
-          alert(`Erro ao ler dados do Firestore: ${error.message}\n\nVerifique as regras de segurança no console do Firebase.`);
+          // Removed alert to avoid blocking the user experience. 
+          // If rules are missing, it will just load empty data.
           
           setAppointments([]);
           setTransactions([]);
@@ -134,7 +135,7 @@ export const AppProvider: React.FC<{children: React.ReactNode}> = ({ children })
           console.log("Data successfully saved to Firestore!");
         } catch (error: any) {
           console.error("FIREBASE WRITE ERROR:", error);
-          alert(`Erro ao salvar no Firestore: ${error.message}\n\nVerifique as regras de segurança no console do Firebase.`);
+          // Removed alert to avoid spamming the user since this runs on every change.
         }
       };
       
